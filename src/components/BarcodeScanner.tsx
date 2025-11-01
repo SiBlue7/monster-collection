@@ -81,7 +81,7 @@ export default function BarcodeScanner({ onResult, onClose }: Props) {
         const retControls = await readerRef.current!.decodeFromVideoDevice(
           deviceId,
           videoRef.current!,
-          (res, err, cbControls) => {
+          (res, _err, cbControls) => {
             if (cbControls) controlsRef.current = cbControls;
             if (res) {
               onResult(res.getText());
