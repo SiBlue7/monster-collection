@@ -5,7 +5,7 @@ import { ensureDefaultGroup } from "../lib/ensureGroup";
 import AddCanForm from "../components/AddCanForm";
 import EditCanForm from "../components/EditCanForm";
 import { supabase } from "../lib/supabase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 type GroupSummary = {
   id: string;
@@ -153,7 +153,7 @@ export default function AppHome() {
 
       <nav className="sticky top-0 z-40 border-b border-white/10 bg-black/80 backdrop-blur-xl">
         <div className="w-full px-4 md:px-8 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
+          <Link to="/app" className="flex items-center gap-3">
             <div className="w-8 h-8 md:w-10 md:h-10 bg-[#39ff14] skew-x-[-10deg] flex items-center justify-center shadow-[0_0_15px_#39ff14]">
               <span className="font-black text-black text-xl md:text-2xl skew-x-[10deg]">
                 M
@@ -162,7 +162,7 @@ export default function AppHome() {
             <h1 className="text-xl md:text-3xl font-black tracking-tighter text-white italic hidden sm:block">
               CAN<span className="text-[#39ff14]">VAULT</span>
             </h1>
-          </div>
+          </Link>
 
           <button
             className="text-[10px] md:text-xs font-bold text-gray-500 hover:text-red-500 transition-colors uppercase tracking-widest border border-transparent hover:border-red-900/50 px-3 py-1"
