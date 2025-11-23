@@ -1,4 +1,3 @@
-// src/components/BarcodeScanner.tsx
 import { useEffect, useRef, useState, useCallback } from "react";
 import { BrowserMultiFormatReader, BarcodeFormat } from "@zxing/browser";
 import { DecodeHintType } from "@zxing/library";
@@ -28,7 +27,6 @@ export default function BarcodeScanner({ onResult, onClose }: Props) {
   useEffect(() => {
     readerRef.current = new BrowserMultiFormatReader();
 
-    // Hints: EAN-13/EAN-8/UPC-A/UPC-E + Code128 (au cas où)
     const hints = new Map();
     hints.set(DecodeHintType.POSSIBLE_FORMATS, [
       BarcodeFormat.EAN_13,
@@ -39,15 +37,12 @@ export default function BarcodeScanner({ onResult, onClose }: Props) {
     ]);
     readerRef.current.setHints(hints);
 
-    // Lister caméras
     (async () => {
       try {
-        // iOS/Chrome réclament souvent une 1ère permission
         await navigator.mediaDevices.getUserMedia({ video: true });
         const list = await BrowserMultiFormatReader.listVideoInputDevices();
         setDevices(list);
 
-        // Choisir caméra arrière si possible
         const back = list.find(
           (d) =>
             /back|rear|environment/i.test(d.label) || /arrière/i.test(d.label)
@@ -74,7 +69,6 @@ export default function BarcodeScanner({ onResult, onClose }: Props) {
 
     (async () => {
       try {
-        // Important pour iOS: playsInline + muted (autoplay)
         videoRef.current!.setAttribute("playsinline", "true");
         videoRef.current!.muted = true;
 
@@ -88,7 +82,6 @@ export default function BarcodeScanner({ onResult, onClose }: Props) {
               stop();
               onClose?.();
             }
-            // err peut être fréquent pendant la recherche: on ne l’affiche pas
           }
         );
         if (retControls) controlsRef.current = retControls;

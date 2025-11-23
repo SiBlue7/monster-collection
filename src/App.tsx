@@ -14,6 +14,12 @@ function App() {
         <Logout />
       </div>
       <Link to="/appHome">Go to App Home</Link>
+      <p className="text-sm mt-4 text-center">
+        Tu veux rejoindre la collection de quelqu&apos;un ?{" "}
+        <Link to="/join-group" className="text-green-400 underline">
+          Entrer un code
+        </Link>
+      </p>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
