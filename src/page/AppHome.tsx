@@ -138,8 +138,6 @@ export default function AppHome() {
     );
   }
 
-  const currentGroup = groups.find((g) => g.id === groupId) ?? null;
-
   return (
     <div className="min-h-screen bg-[#050505] text-gray-100 font-sans selection:bg-[#39ff14] selection:text-black overflow-x-hidden flex flex-col">
       <div className="fixed inset-0 pointer-events-none z-0">
