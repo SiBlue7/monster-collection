@@ -155,3 +155,13 @@ export async function deleteCan(input: { id: string }) {
       .catch(() => {});
   }
 }
+
+export async function countCansForGroup(groupId: string): Promise<number> {
+  const { count, error } = await supabase
+    .from("cans")
+    .select("id", { count: "exact", head: true })
+    .eq("group_id", groupId);
+
+  if (error) throw error;
+  return count ?? 0;
+}

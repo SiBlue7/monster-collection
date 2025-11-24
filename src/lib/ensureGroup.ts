@@ -17,11 +17,13 @@ export async function ensureDefaultGroup(): Promise<string> {
  * - sinon on crée un groupe par défaut.
  */
 export async function getMyGroupId(): Promise<string> {
+  const user = (await supabase.auth.getUser()).data.user;
+  if (!user) throw new Error("Utilisateur non connecté");
+
   const { data, error } = await supabase
     .from("group_members")
-    .select("group_id, created_at")
-    .eq("user_id", (await supabase.auth.getUser()).data.user?.id ?? "")
-    .order("created_at", { ascending: false })
+    .select("group_id")
+    .eq("user_id", user.id)
     .limit(1);
 
   if (error) throw error;
